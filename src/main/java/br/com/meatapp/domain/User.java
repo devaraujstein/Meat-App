@@ -33,7 +33,6 @@ public class User implements Serializable{
 	private String email;
 	
 	@NotNull
-	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	

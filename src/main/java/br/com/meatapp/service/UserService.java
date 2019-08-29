@@ -24,4 +24,15 @@ public class UserService {
 		return user.orElseThrow(() -> 
 			new ObjectNotFoundException("Usuario não encontrado ! ID :" + id)) ;
 	}
+	
+	public User findByEmail(String email) {
+		Optional<User> user = userRepository.findByEmail(email);
+		return user.orElseThrow(() -> 
+				new ObjectNotFoundException("Email não encontrado !"));
+	}
+	
+	public User insert(User user) {
+		user.setId(null);
+		return userRepository.save(user);
+	}
 }
