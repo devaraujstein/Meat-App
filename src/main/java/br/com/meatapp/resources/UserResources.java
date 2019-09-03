@@ -25,6 +25,7 @@ public class UserResources {
 	@Autowired
 	private UserService userService;
 	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<User>> findAll(){
 		List<User> users = userService.findAll();
@@ -56,4 +57,31 @@ public class UserResources {
 		
 		return ResponseEntity.created(uri).body(user);
 	}
+	
+	@RequestMapping(value="id/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody User user, @PathVariable Integer id){
+		user = userService.update(user,id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	@RequestMapping(value="id/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+			userService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
